@@ -3,7 +3,6 @@ import { Router, Route, Switch } from "react-router-dom";
 import { createBrowserHistory } from "history";
 
 import Layout from "./containers/Layout";
-import Home from "./containers/Home";
 import PostList from "./containers/PostList";
 import PostDetail from "./containers/PostDetail";
 import PostCreate from "./containers/PostCreate";
@@ -17,9 +16,8 @@ function App() {
     <Router history={history}>
       <Layout>
         <Switch>
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" component={PostList} />
           <Route path="/create" component={PostCreate} />
-          <Route path="/blog" component={PostList} />
           <Route path="/post/:postSlug" component={PostDetail} />
           <Route path="/post/:postSlug/update" component={PostUpdate} />
           <Route path="/post/:postSlug/delete" component={PostDelete} />
