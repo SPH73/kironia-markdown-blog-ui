@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import { Divider, Header, Item } from "semantic-ui-react";
 import axios from "axios";
 import Loader from "../components/Loader";
@@ -13,7 +14,7 @@ const PostList = () => {
     async function fetchData() {
       setLoading(true);
       try {
-        const res = await axios.get("http://127.0.0.1:8000/api/post/");
+        const res = await axios.get("http://127.0.0.1:8000/api/posts/");
         setPosts(res.data);
         setLoading(false);
       } catch (error) {
@@ -36,7 +37,10 @@ const PostList = () => {
             <Item key={post.id}>
               <Item.Image size="small" src={post.thumbnail} />
               <Item.Content>
-                <Item.Header as="a">{post.title}</Item.Header>
+                <NavLink to={`/posts/${post.slug}`}>
+                  <Item.Header as="h3">{post.title}</Item.Header>
+                </NavLink>
+
                 <Item.Description>{post.content}</Item.Description>
                 {/* <Item.Extra>
                   <Icon color="green" name="check" /> 121 Votes
